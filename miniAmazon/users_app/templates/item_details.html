@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+    <h1 class="text-blue">Comments of {{item_name}}</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Content</th>
+                <th>Create Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in item_comments %}
+                <tr>
+                    <td>{{comment.user_name}}</td>
+                    <td>{{comment.content}}</td>
+                    <td>{{comment.create_time}}</td>      
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if can_comment %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn" name="" value="Leave A Comment">
+        </form>
+    </div>
+    {% endif %}
+
+{% endblock body_block%}

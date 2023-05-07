@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+    <h1 class="text-blue">Your Placed Orders</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Deliver Address</th>
+                <th>Placed Time</th>
+                <th>Status</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>x={{order.addr_x}} y={{order.addr_y}}</td>
+                    <td>{{order.time}}</td>
+                    <td>{{order.status}}</td>      
+                    <td>{{order.item.name}}</td>
+                    <td>{{order.amount}}</td>
+                    <td>{{order.price}}</td>             
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+1. RAII: Ues RAII like lock_guard<mutex>, unique_ptr to manage resource.
+
+2. using try catch to handle exception.
+
+3. vector is not safe for mutithreading. So i initialize them and push back 65536 false to make it thread safe.(i assume 
+the max sequence number is 65536)
+
+4.Considering user's password, we cannot store user's plain text password at the database. 
+If the mochine is compromised, user's password will be stolen by malicious users.
+    
+    Solution: We decided to use django's built in User from django.contrib.auth.models, which has iteration,
+              salt,hashing algorithm.
+
+5.
+malicious users can directly type url to create ride without login.
+    
+    Solution: add from django.contrib.auth.mixins import LoginRequiredMixin to those views
+
+6.
+POST request might not be sent by our website but malicious website
+    
+    solution: check CSRF token when receiving POST request.
+
+7.
+Malicious users may DDoS attack on our website.
+
+    Solution: Using Nginx to do reverse proxy and protect our website.
+
+8.
+Building a thread-safe queue using semaphore. loop and put the request into queue, stop processing  a request once we received its ack. Only act once.
+

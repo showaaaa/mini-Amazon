@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body_block%}
+
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn" name="" value="Add to cart">
+        </form>
+    </div>
+{% endblock%}

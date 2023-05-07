@@ -1,0 +1,10 @@
+product differentiation:
+    1.  After user place an order, we will assign a nearest warehouse based on user address.
+    2.  Since response time is an important consideration for client choosing shopping website,
+        we upgrade our server to be implemented using thread pool to improve response time and to
+        allow more user shopping at peak shopping time. 
+    3. we upgrade our server to allow log. In this way, server security or maintainer staff can 
+       analyze the traffic/server status through log
+    4. we add user system, different user can register, login, logout with their own password, shopping cart  placeing order and tracing their own orders.
+    5. We add catagory search & shopping cart. User can now first put their orders into shopping cart. In the shopping cart, the user can remove some items from the shopping cart and place the order. The users can specifiy their location for all the orders in the shopping cart.
+    6. User can view items' comments and leave a comment if he/she has purchased this item.

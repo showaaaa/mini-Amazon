@@ -1,0 +1,39 @@
+{% extends "ride/ride_home.html" %}
+{% load static %}
+
+{% block body_block %}
+    <h1 class="text-blue">Your Orders</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Remove Order</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+            
+                <tr>
+
+                    <td>{{item.name}}</td>
+                    <td>{{ item.price}}</td>
+                    <td>{{ order.amount }}</td>
+                    <td>{{ order.price }}</td>
+            
+               
+                    <td>
+                        <a class="" href="{% url 'users_app:remove_order' order_id=order.pack_id %}">Remove
+                        </a>
+                    </td>
+             
+                </tr>
+               
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

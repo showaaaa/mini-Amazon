@@ -1,0 +1,21 @@
+GDB = -g
+THREAD = -pthread
+PQXX = -lpqxx -lpq
+GPB = `pkg-config --cflags --libs protobuf`
+PROTO_CC = ./world_amazon.pb.cc
+PROTO_H = ./world_amazon.pb.h
+VERSION = -std=c++11
+TOOLS_H = sbuf.h exception.h socket.h protobufCommunication.hpp function.h 
+TOOLS_CPP = socket.cpp function.cpp
+DATA_STRUCTURE_H = order.h Warehouse.h
+
+
+all: server
+
+server:  server.h AResponseHandler.h orderProcess.h sql_helper.h UMessageHandler.h $(PROTO_H) $(TOOLS_H) $(DATA_STRUCTURE_H)
+	g++ -o server main.cpp server.cpp sql_helper.cpp AResponseHandler.cpp orderProcess.cpp UMessageHandler.cpp $(TOOLS_CPP) $(PROTO_CC) $(PQXX) $(GDB) $(THREAD) $(GPB) $(VERSION)
+
+.PHONY:
+	clean
+clean:
+	rm -rf *.o server  

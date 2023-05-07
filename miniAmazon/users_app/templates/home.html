@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block body_block %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <div align="center">
+                <a href="https://smms.app/image/rxnND2pe58yqzRK" target="_blank"><img src="https://s2.loli.net/2023/04/22/rxnND2pe58yqzRK.png" alt="download.png"></a>
+
+                <h2 align="center">Mini-Amazon</h2>
+
+            </div>
+
+            {% if user.is_authenticated %}
+                <h3 align="center">Welcome {{ user.username }}!</h3>
+            {% else %}
+                <h3 class="home_h2line" align="center">Welcome to Mini-Amazon!</h3>
+                <div>
+                    <a class="nav-item nav-link" align="center" href="{% url 'users_app:register' %}">Register</a>
+                    <a class="nav-item nav-link" align="center" href="{% url 'users_app:login' %}">Login</a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

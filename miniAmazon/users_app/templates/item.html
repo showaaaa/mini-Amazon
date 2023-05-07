@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+
+
+<input
+type="checkbox"
+id="ElectronicBox"
+onchange="filterItems(event)"
+/> &nbsp; Electronic
+<br/>
+<input
+type="checkbox"
+id="FoodBox"
+onchange="filterItems(event)"
+/> &nbsp; Food
+<br/>
+<input
+type="checkbox"
+id="DrinkBox"
+onchange="filterItems(event)"
+/> &nbsp; Drink
+<br/>
+<input
+type="checkbox"
+id="DailySupplyBox"
+onchange="filterItems(event)"
+/> &nbsp; Daily Supply
+<br/>
+<input
+type="checkbox"
+id="OthersBox"
+onchange="filterItems(event)"
+/> &nbsp; Others
+<br/>
+<br/>
+<div class="Electronic" style="display: none;"> 
+    <table class="table table-bordered">
+        <h3>Confirmed Ride Table</h3>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Comments</th>
+            <th>Add</th>
+        </tr>
+    </thead>
+
+    <tbody id="item_details">
+    {% for item in electronic_items %}
+ 
+    <tr class="electronic_item item-{{ item.id }}">
+        <td >{{ item.name}}</td>
+        <td >{{ item.price }}</td>
+        <td >{{ item.description }}</td>
+        <td>
+            <a class="" href="{% url 'users_app:item_details' itemid=item.id%}">Order Details
+            </a>
+        </td>
+        <td>
+            <a class="" href="{% url 'users_app:in_cart' item_id=item.id%}">Add to Cart
+            </a>
+        </td>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+<div class="Food" style="display: none;">
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Comments</th>
+            <th>Add</th>
+        </tr>
+    </thead>
+
+    <tbody id="item_details">
+    {% for item in food_items %}
+ 
+    <tr class="food_item item-{{ item.id }}">
+        <td >{{ item.name}}</td>
+        <td >{{ item.price }}</td>
+        <td >{{ item.description }}</td>
+        <td>
+            <a class="" href="{% url 'users_app:item_details' itemid=item.id%}">Order Details
+            </a>
+        </td>
+        <td>
+            <a class="" href="{% url 'users_app:in_cart' item_id=item.id%}">Add to Cart
+            </a>
+        </td>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+<div class="Drink" style="display: none;">
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Comments</th>
+            <th>Add</th>
+        </tr>
+    </thead>
+
+    <tbody id="item_details">
+    {% for item in drink_items %}
+ 
+    <tr class="drink_item item-{{ item.id }}">
+        <td >{{ item.name}}</td>
+        <td >{{ item.price }}</td>
+        <td >{{ item.description }}</td>
+        <td>
+            <a class="" href="{% url 'users_app:item_details' itemid=item.id%}">Order Details
+            </a>
+        </td>
+        <td>
+            <a class="" href="{% url 'users_app:in_cart' item_id=item.id%}">Add to Cart
+            </a>
+        </td>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+<div class="Daily_supply" style="display: none;">
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Comments</th>
+            <th>Add</th>
+        </tr>
+    </thead>
+
+    <tbody id="item_details">
+    {% for item in daily_supply_items %}
+ 
+    <tr class="daily_supply_item item-{{ item.id }}">
+        <td >{{ item.name}}</td>
+        <td >{{ item.price }}</td>
+        <td >{{ item.description }}</td>
+        <td>
+            <a class="" href="{% url 'users_app:item_details' itemid=item.id%}">Order Details
+            </a>
+        </td>
+        <td>
+            <a class="" href="{% url 'users_app:in_cart' item_id=item.id%}">Add to Cart
+            </a>
+        </td>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+<div class="Others" style="display: none;">
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Comments</th>
+            <th>Add</th>
+        </tr>
+    </thead>
+
+    <tbody id="item_details">
+    {% for item in other_items %}
+ 
+    <tr class="others_item item-{{ item.id }}">
+        <td >{{ item.name}}</td>
+        <td >{{ item.price }}</td>
+        <td >{{ item.description }}</td>
+        <td>
+            <a class="" href="{% url 'users_app:item_details' itemid=item.id%}">Order Details
+            </a>
+        </td>
+        <td>
+            <a class="" href="{% url 'users_app:in_cart' item_id=item.id%}">Add to Cart
+            </a>
+        </td>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+<script>
+    function filterItems(event) {
+        let ElectronicCheckBox = document.getElementById("ElectronicBox");
+
+        let DailySupplyCheckBox = document.getElementById("DailySupplyBox");
+        let FoodCheckBox = document.getElementById("FoodBox");
+        let DrinkCheckBox = document.getElementById("DrinkBox");
+        
+        let OthersCheckBox = document.getElementById("OthersBox");
+       
+        let ElectronicItems = document.getElementsByClassName("Electronic");
+        let DailySupplyItems = document.getElementsByClassName("Daily_supply");
+        let FoodItems = document.getElementsByClassName("Food");
+        let DrinkItems = document.getElementsByClassName("Drink");  
+        let OthersItems = document.getElementsByClassName("Others");
+
+
+        for (let i = 0; i < ElectronicItems.length; i++) {
+            ElectronicItems[i].style.display = ElectronicCheckBox.checked ? "block" : "none";
+        }
+
+        for (let i = 0; i < FoodItems.length; i++) {
+            FoodItems[i].style.display =  FoodCheckBox.checked ? "block" : "none";
+        }
+
+        for (let i = 0; i < DrinkItems.length; i++) {
+            DrinkItems[i].style.display = DrinkCheckBox.checked ? "block" : "none";
+        }
+
+        for (let i = 0; i < DailySupplyItems.length; i++) {
+            DailySupplyItems[i].style.display = DailySupplyCheckBox.checked ? "block" : "none";
+        }
+
+        for (let i = 0; i < OthersItems.length; i++) {
+            OthersItems[i].style.display = OthersCheckBox.checked ? "block" : "none";
+        }
+    }
+
+</script>
+
+
+
+
+{% endblock body_block%}
